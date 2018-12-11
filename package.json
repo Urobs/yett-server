@@ -1,0 +1,31 @@
+{
+  "name": "yett-server",
+  "version": "1.0.0",
+  "description": "server side of wechat app yett!",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Urobs/yett-server.git"
+  },
+  "keywords": [
+    "server",
+    "yett"
+  ],
+  "author": "Urob",
+  "dependencies": {
+    "mocha": "5.2.0",
+    "koa": "2.6.2",
+    "sequelize": "4.41.2",
+    "mysql2": "1.6.4",
+    "koa-router": "7.4.0",
+    "koa-bodyparser": "4.2.1"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Urobs/yett-server/issues"
+  },
+  "homepage": "https://github.com/Urobs/yett-server#readme"
+}
