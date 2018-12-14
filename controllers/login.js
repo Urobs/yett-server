@@ -9,12 +9,7 @@ module.exports = async (ctx) => {
   if (ctx.errors) {
     throw new ApiError('params_validate_error: 参数不能为空');
   }
-  //const { openid, errcode, errmsg } = await getCodeAndSession(ctx.code);
-  const { openid, errcode, errmsg } = {
-    openid: 'qfqwfqde',
-    errcode: 0,
-    errmsg: ''
-  };
+  const { openid, errcode, errmsg } = await getCodeAndSession(ctx.code);
   if (errcode != 0) {
     console.log(errmsg);
     throw new ApiError('code_request_error: code请求失败');
