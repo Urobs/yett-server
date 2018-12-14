@@ -6,14 +6,14 @@ describe('tasks service', () => {
     it('return new task', async () => {
       const task = {
         content: 'hello world',
-        expireTime: '2017-11-05 20:29:36',
+        expireTime: new Date(),
         userId: 1
       };
       const result = await tasks.addTasks(task);
       console.log(result);
     });
   });
-  describe('markTask', () => {
+  describe.skip('markTask', () => {
     it('return updated task', async () => {
       const task = {
         taskId: 1,
@@ -31,7 +31,7 @@ describe('tasks service', () => {
       console.log(result[0]);
     });
   });
-  describe('getTasks()', () => {
+  describe.skip('getTasks()', () => {
     it('get task today', async () => {
       const timeBase = new Date().getFullYear() + '-' +
         (new Date().getMonth() + 1) + '-' + new Date().getDate();

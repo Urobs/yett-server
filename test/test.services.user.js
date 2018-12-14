@@ -11,7 +11,7 @@ describe.skip('createUser()', () => {
   });
 });
 
-describe('getUserId()', () => {
+describe.skip('getUserId()', () => {
   it('renturn a promise which can access id', async () => {
       const result = await User.getUserId('qfqwfqde');
       console.log(result.id);

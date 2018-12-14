@@ -25,8 +25,8 @@ async function markFinishTask ({ taskId, userId }) {
   }, {
     where: { id: taskId, userId }
   });
-  if (!result) {
-    throw new QueryError('task_update_error: 任务更新失败');
+  if (result[0] === 0) {
+    throw new QueryError('task_update_fail: 任务更新失败');
   }
   return result;
 }
@@ -37,8 +37,8 @@ async function markExpire ({ taskId, userId }) {
   }, {
     where: { id: taskId, userId }
   });
-  if (!result) {
-    throw new QueryError('task_update_error: 任务更新失败');
+  if (result[0] === 0) {
+    throw new QueryError('task_update_fail: 任务更新失败');
   }
   return result;
 }
@@ -70,8 +70,8 @@ async function deleteTask ({ taskId, userId }) {
   const result = await Tasks.destroy({
     where: { id: taskId, userId }
   });
-  if (result[0] === 0) {
-    throw new QueryError('task_delete_error: 没有这项任务');
+  if (result === 0) {
+    throw new QueryError('task_delete_fail: 没有这项任务');
   }
   return result;
 }

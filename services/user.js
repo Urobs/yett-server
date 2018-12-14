@@ -29,10 +29,10 @@ async function getUserId (openid) {
     console.log(err);
     throw new QueryError('get_id_error: 用户id查找错误');
   });
-  if (!result) {
+  if (!result.id) {
     throw new QueryError('get_id_error: 找不到该用户id');
   }
-  return result;
+  return result.id;
 }
 
  module.exports = { createUser, getUserId }

@@ -24,19 +24,13 @@ Yett小程序后端
 
 ### user
 
-创建用户
+登录创建用户
 
-`POST /api/user`
-
-``` json
-body: {
-	openid: 'user_open_id'
-}
-```
+`GET /api/login/:code`
 
 查询用户id
 
-`GET /api/user?openid=user_open_id`
+`GET /api/user/:user_open_id`
 
 ### tasks
 
@@ -46,43 +40,47 @@ body: {
 
 ```json
 body: {
-    content: 'task_content',
-    expireTime: 'expire_time'
+    "content": "task_content",
+    "expireTime": "expire_time"
 }
 ```
 
 标记任务完成
 
-`PUT /api/tasks/id`
+`PUT /api/tasks/:id`
 
 ```json
 body : {
-   	finished: ''
+   	"mark": "finished"
 }
 ```
 
 标记任务逾期
 
-`PUT /api/tasks/id`
+`PUT /api/tasks/:id`
 
 ```json
 body: {
-    expired: ''
+    "mark": "expired"
 }	
 ```
 
 获取今日任务
 
-`GET /api/tasks/today?limit=offset=`
+`GET /api/tasks?sort=today&limit=&offset=`
 
 获取历史任务
 
-`GET /api/tasks/all?limit=offset=`
+`GET /api/tasks?sort=all&limit=&offset=`
 
 获取逾期任务
 
-`GET /api/tasks/expired?limit=offset=`
+`GET /api/tasks?sort=expired&limit=&offset=`
 
 获取已完成任务
 
-`GET /api/tasks/finished?limit=offset=`
+`GET /api/tasks?sort=finished&limit=&offset=`
+
+删除任务
+
+`GET /api/tasks/:id`
