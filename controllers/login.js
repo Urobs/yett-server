@@ -9,9 +9,9 @@ module.exports = async (ctx) => {
   if (ctx.errors) {
     throw new ApiError('params_validate_error: 参数不能为空');
   }
-  const { openid, errcode, errmsg } = await getCodeAndSession(ctx.code);  
-  if (errcode != 0) {
-    console.log(errmsg);
+  const { openid, errcode, errmsg } = await getCodeAndSession(ctx.params.code);
+  if (errcode) {
+    console.log(errcode, errmsg);
     throw new ApiError('code_request_error: code请求失败');
   }
   try {
@@ -21,9 +21,11 @@ module.exports = async (ctx) => {
   }
   const userToken = { openid };
   const token = jwt.sign(userToken, secret, { expiresIn });
+  const expiredIn = new Date().getTime() + 72 * 60 * 60 * 1000;
 
   ctx.status = 200;
   ctx.body = {
-    token
+    token,
+    expiredIn
   };
 }

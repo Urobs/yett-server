@@ -1,8 +1,10 @@
+const { Op } = require('sequelize'); 
 const Tasks = require('../services/tasks');
 const ApiError = require('../lib/api_error');
-const createTime = require('../lib/get_today')();
+const createTimeFunc = require('../lib/get_today');
 const paramsSortEnum = ['today', 'all', 'expired', 'finished'];
 const markTypeEnum = ['finished', 'expired'];
+const weightEnum = ['1', '2', '3', '4'];
 
 async function getTasks (ctx) {
   ctx.checkQuery('sort').notEmpty().toLowercase().isIn(paramsSortEnum);
@@ -16,13 +18,17 @@ async function getTasks (ctx) {
   let where = null;
   switch (sort) {
     case 'today':
+      const createTime = createTimeFunc();
       where = { userId, createTime };
       break;
     case 'all':
       where = { userId };
       break;
     case 'expired':
-      where = { userId, isExpired: 'yes' };
+      where = { 
+        userId,
+        [Op.and]: [{ isExpired: 'yes' }, { isFinished: 'no' }] 
+      };
       break;
     case 'finished':
       where = { userId, isFinished: 'yes' };
@@ -35,12 +41,13 @@ async function getTasks (ctx) {
 async function createTask (ctx) {
   ctx.checkBody('content').notEmpty().escape();
   ctx.checkBody('expireTime').notEmpty().isDate().toDate();
+  ctx.checkBody('weight').notEmpty().isIn(weightEnum);
   if (ctx.errors) {
     throw new ApiError('params_validate_error: 参数校验失败');
   }
-  const { content, expireTime } = ctx.request.body;
+  const { content, expireTime, weight } = ctx.request.body;
   const { userId } = ctx.state;
-  await Tasks.addTasks({ content, expireTime, userId });
+  await Tasks.addTasks({ content, expireTime, userId, weight });
   ctx.status = 200;
 }
 

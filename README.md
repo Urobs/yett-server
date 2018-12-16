@@ -41,7 +41,8 @@ Yett小程序后端
 ```json
 body: {
     "content": "task_content",
-    "expireTime": "expire_time"
+    "expireTime": "expire_time",
+    "weight": "task_weight"
 }
 ```
 
@@ -83,4 +84,4 @@ body: {
 
 删除任务
 
-`GET /api/tasks/:id`
+`DELETE /api/tasks/:id`

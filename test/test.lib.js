@@ -2,7 +2,7 @@ const QueryError = require('../lib/query_error');
 const httpsGet = require('../lib/https_get');
 const getToday = require('../lib/get_today')
 
-describe('lib function', () => {
+describe.skip('lib function', () => {
   describe.skip('throw QueryError', () => {
     it('return QueryError', () => {
       try { 

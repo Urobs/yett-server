@@ -53,7 +53,8 @@ async function getTasks ({ where, offset, limit }) {
   const result = await Tasks.findAndCountAll({
     where,
     offset,
-    limit
+    limit,
+    order: [['createTime', 'DESC']]
   }).catch (err => {
     console.log(err);
     throw new QueryError('task_search_error: 任务查询错误');

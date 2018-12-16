@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    weight: {
+      type: DataTypes.ENUM('1', '2', '3', '4'),
+      allowNull: false
+    },
     expireTime: {
       type: DataTypes.DATE,
       allowNull: false
