@@ -1,6 +1,6 @@
 const sequelize = require('../model').sequelize;
 
-describe('model', () => {
+describe.skip('model', () => {
   describe('authenticate()', () => {
     it('test connection', async () => {
       try {

@@ -82,5 +82,5 @@ module.exports = {
   markFinishTask, 
   markExpire, 
   getTasks, 
-  deleteTask 
+  deleteTask
 }
